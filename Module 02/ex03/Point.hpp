@@ -3,24 +3,26 @@
 
 #include "Fixed.hpp"
 
+
+
 class Point
 {
-private:
-    const Fixed x;
-    const Fixed y;
 
-public:
-    Point();
-    Point(const float f1, const float f2);
-    Point(const Point &other);
-    Point &operator=(const Point &other);
-    ~Point();
+	Fixed const x;
+	Fixed const y;
 
-    
-    Fixed const	getX() const;
-    Fixed const	getY() const;
+public :
+
+	Point();
+	Point(Point const &other);
+	Point(float const x, float const y);
+	~Point();
+
+	Point&	operator=(Point const &src);
+
+	float getX(void)	const;
+	float getY(void)	const;
+
 };
-
-std::ostream &	operator<<(std::ostream &o, Point const &rSym);
 
 #endif

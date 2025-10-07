@@ -1,49 +1,59 @@
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#ifndef FIXED_H
+#define FIXED_H
 
 #include <iostream>
 #include <cmath>
+#include <ostream>
 
-class Fixed
+class Fixed 
 {
 private:
-    int _value;
-    static const int fractionalBits = 8;
+    int _raw;
+    static const int _fractionalBits = 8;
 
 public:
+    // Orthodox 
     Fixed();
-    Fixed(const int value);
-    Fixed(const float value);
-    Fixed(const Fixed &other);
-    Fixed &operator=(const Fixed &other);
-    bool operator>(const Fixed &other) const;
-    bool operator<(const Fixed &other) const;
-    bool operator>=(const Fixed &other);
-    bool operator<=(const Fixed &other);
-    bool operator==(const Fixed &other);
-    bool operator!=(const Fixed &other);
-    Fixed operator+(const Fixed &other);
-    Fixed operator-(const Fixed &other);
-    Fixed operator*(const Fixed &other);
-    Fixed operator/(const Fixed &other);
-    Fixed&	operator++();
-    Fixed	operator++(int);
-    Fixed&	operator--();
-    Fixed	operator--(int);
+    Fixed(const Fixed& other);
+    Fixed& operator=(const Fixed& other);
     ~Fixed();
+
+    Fixed(int const i);
+    Fixed(float const f);
+
 
     int getRawBits(void) const;
     void setRawBits(int const raw);
-
     float toFloat(void) const;
     int toInt(void) const;
 
-    static Fixed &			min(Fixed &a, Fixed &b);
-    static Fixed const &	min(Fixed const &a, Fixed const &b);
-    static Fixed &			max(Fixed &a, Fixed &b);
-    static Fixed const &	max(Fixed const &a, Fixed const &b);
+	// 6 comparison operators: >, <, >=, <=, ==, and !=
+    bool operator>(const Fixed& other) const;
+    bool operator<(const Fixed& other) const;
+    bool operator>=(const Fixed& other) const;
+    bool operator<=(const Fixed& other) const;
+    bool operator==(const Fixed& other) const;
+    bool operator!=(const Fixed& other) const;
+
+    // 4 arithmetic operators: +, -, *, and /
+    Fixed operator+(const Fixed& other) const;
+    Fixed operator-(const Fixed& other) const;
+    Fixed operator*(const Fixed& other) const;
+    Fixed operator/(const Fixed& other) const;
+
+    // 4 increment/decrement
+    Fixed& operator++();       // ++Prefix
+    Fixed operator++(int);     // Postfix++
+    Fixed& operator--();       // --Prefix
+    Fixed operator--(int);     // Postfix--
+
+    // Static member functions
+    static Fixed& min(Fixed& lhs, Fixed& rhs);
+    static const Fixed& min(const Fixed& lhs, const Fixed& rhs);
+    static Fixed& max(Fixed& lhs, Fixed& rhs);
+    static const Fixed& max(const Fixed& lhs, const Fixed& rhs);
 };
 
-std::ostream&	operator<<(std::ostream& o, Fixed const &rSym);
+std::ostream& operator<<(std::ostream& out, const Fixed& f);
 
 #endif

@@ -1,33 +1,22 @@
 #include "Point.hpp"
 
-Point::Point() : x(0), y(0){}
+Point::Point() : x(0), y(0) {}
 
-Point::Point(const float f1, const float f2): x(f1), y(f2){}
 
-Point::Point(const Point &other){
-    *this = other;
-}
+Point::Point(float const x, float const y) : x(x) , y(y) {}
 
-Point &Point::operator=(const Point &other)
+Point::Point(Point const &other)  : x(other.getX()), y(other.getY()) {}
+
+
+Point& Point::operator=(const Point& other)
 {
-    if(this != &other)
-	{
-        *this = other;
-	}
-	return *this;
+	(void)other;
+   
+   return *this;
 }
 
-Point::~Point(){}
+Point::~Point(){};
 
-std::ostream &	operator<<(std::ostream &o, Point const &rSym) {
-	o << "x:(" << rSym.getX() << "); y:(" << rSym.getY() << ");";
-	return o;
-}
+float Point::getX(void) const { return this->x.toFloat(); }
 
-Fixed const	Point::getX() const {
-	return this->x;
-}
-
-Fixed const	Point::getY() const {
-	return this->y;
-}
+float Point::getY(void) const { return this->y.toFloat(); }

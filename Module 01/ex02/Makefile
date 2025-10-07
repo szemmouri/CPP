@@ -1,17 +1,28 @@
-NAME     = program
-CC       = c++ -Wall -Wextra -Werror -std=c++98
-SRC    = *.cpp
+NAME    = program
+CC      = c++
+CFLAGS  = -Wall -Wextra -Werror -std=c++98
+
+SRC     = 
+OBJ     = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	@$(CC) $(SRC) -o $(NAME)
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@echo "✅ Build complete: $(NAME)"
+
+%.o: %.cpp
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "🔧 Compiled: $<"
 
 clean:
-	@rm -f $(NAME)
+	@rm -f $(OBJ)
+	@echo "🧹 Object files removed"
 
 fclean: clean
+	@rm -f $(NAME)
+	@echo "🗑️  Executable removed"
 
 re: fclean all
 
-.PHONY: clean
+.PHONY: all clean fclean re
