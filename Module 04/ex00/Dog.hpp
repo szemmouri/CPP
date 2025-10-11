@@ -1,5 +1,4 @@
-#ifndef DOG_HPP
-#define DOG_HPP
+#pragma once
 
 #include "Animal.hpp"
 
@@ -9,9 +8,7 @@ public:
     Dog();
     Dog(const Dog &other);
     Dog &operator=(const Dog &other);
-    ~Dog() override;
+    ~Dog();
 
-    void makeSound() override;
+    void makeSound() const;
 };
-
-#endif

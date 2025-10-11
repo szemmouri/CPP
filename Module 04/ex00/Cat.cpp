@@ -5,6 +5,10 @@ Cat::Cat() : Animal() {
     std::cout << "Cat constructor called" << std::endl;
 }
 
+Cat::~Cat() {
+    std::cout << "Cat destructor called" << std::endl;
+}
+
 Cat::Cat(const Cat &other) : Animal(other) {
     *this = other;
 }
@@ -16,10 +20,6 @@ Cat &Cat::operator=(const Cat &other) {
     return *this;
 }
 
-Cat::~Cat() {
-    std::cout << "Cat destructor called" << std::endl;
-}
-
-void Cat::makeSound() {
-    std::cout << "MEOW MEOW MEOW... Cat Sound" << std::endl;
+void Cat::makeSound() const{
+    std::cout << "Meow Meow Meow..." << std::endl;
 }

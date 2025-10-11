@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "compare": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "array": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }

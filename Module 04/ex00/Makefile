@@ -1,4 +1,4 @@
-NAME     = DiamondTrap
+NAME     = animal
 CC       = c++ -Wall -Wextra -Werror -std=c++98
 SRC    = *.cpp
 
